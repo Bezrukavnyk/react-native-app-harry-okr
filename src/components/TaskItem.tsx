@@ -1,21 +1,27 @@
 import React, { FC, memo } from "react";
 import { Button, ListItem } from "react-native-elements";
 
-import { TaskModel } from "../utils/types";
+import { PostModel } from "../utils/types";
+import { useAppDispatch } from "../store/store";
+import { deletePost } from "../store/taskAsync";
 
 interface Props {
-  task: TaskModel;
-  onRemove: (id: string) => void;
-  onPress: (task: TaskModel) => void;
+  post: PostModel;
+  onPress: (id: number) => void;
 }
 
-const TaskItem: FC<Props> = ({ task, onRemove, onPress }) => {
+const TaskItem: FC<Props> = ({ post, onPress }) => {
+  const dispatch = useAppDispatch();
+  const onRemove = (id: number) => {
+    dispatch(deletePost(id));
+  };
+	
   return (
-    <ListItem onPress={() => onPress(task)}>
+    <ListItem onPress={() => onPress(post.id)}>
       <ListItem.Content>
-        <ListItem.Title>{task.content}</ListItem.Title>
+        <ListItem.Title>{post?.title}</ListItem.Title>
       </ListItem.Content>
-      <Button title="Delete" onPress={() => onRemove(task.id)} />
+      <Button title="Delete" onPress={() => onRemove(post.id)} />
     </ListItem>
   );
 };

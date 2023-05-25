@@ -1,28 +1,55 @@
 import React, { FC, memo, useState } from "react";
 import { Button, Input } from "react-native-elements";
+import { View, StyleSheet } from "react-native";
+import { useAppDispatch } from "../store/store";
+import { createPost } from "../store/taskAsync";
 
-interface Props {
-  onAdd: (content: string) => void;
-}
-
-const AddTaskForm: FC<Props> = ({ onAdd }) => {
-  const [content, setContent] = useState("");
+const AddTaskForm: FC = () => {
+  const [title, setTitle] = useState("");
+  const [body, setBody] = useState("");
+  const dispatch = useAppDispatch();
 
   const handleSubmit = () => {
-    onAdd(content);
-    setContent("");
+    if (title && body) {
+      dispatch(createPost({ title, body }));
+      setTitle("");
+      setBody("");
+    }
   };
 
   return (
-    <>
+    <View style={styles.container}>
       <Input
-        placeholder="Task content"
-        value={content}
-        onChangeText={setContent}
+        placeholder="Title"
+        value={title}
+        onChangeText={setTitle}
+        containerStyle={styles.input}
       />
-      <Button title="Add task" onPress={handleSubmit} />
-    </>
+      <Input
+        placeholder="Body"
+        value={body}
+        onChangeText={setBody}
+        containerStyle={styles.input}
+      />
+      <Button
+        title="Add Post"
+        onPress={handleSubmit}
+        containerStyle={styles.button}
+      />
+    </View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    padding: 16,
+  },
+  input: {
+    marginBottom: 16,
+  },
+  button: {
+    marginTop: 8,
+  },
+});
 
 export default memo(AddTaskForm);

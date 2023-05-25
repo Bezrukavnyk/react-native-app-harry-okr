@@ -3,21 +3,19 @@ import { ScrollView } from "react-native";
 
 import TaskItem from "./TaskItem";
 
-import { TaskModel } from "../utils/types";
+import { PostModel } from "../utils/types";
 
 interface Props {
-  tasks: TaskModel[];
-  onRemove: (id: string) => void;
-  onPress: (task: TaskModel) => void;
+  posts: PostModel[] | null;
+  onPress: (id: number) => void;
 }
 
-const TaskList: FC<Props> = ({ tasks, onRemove, onPress }) => (
+const TaskList: FC<Props> = ({ posts, onPress }) => (
   <ScrollView>
-    {tasks.map((task) => (
+    {posts?.map((post) => (
       <TaskItem
-        key={task.id}
-        task={task}
-        onRemove={onRemove}
+        key={post.id}
+        post={post}
         onPress={onPress}
       />
     ))}
