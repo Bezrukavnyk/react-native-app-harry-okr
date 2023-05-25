@@ -1,15 +1,17 @@
 import React, { FC, memo } from "react";
 import { ScrollView } from "react-native";
+
 import TaskItem from "./TaskItem";
-import { Task } from "../utils/types";
+
+import { TaskModel } from "../utils/types";
 
 interface Props {
-  tasks: Task[];
+  tasks: TaskModel[];
   onRemove: (id: string) => void;
-  onPress: (task: Task) => void;
+  onPress: (task: TaskModel) => void;
 }
 
-const TaskList: FC<Props> = memo(({ tasks, onRemove, onPress }) => (
+const TaskList: FC<Props> = ({ tasks, onRemove, onPress }) => (
   <ScrollView>
     {tasks.map((task) => (
       <TaskItem
@@ -20,6 +22,6 @@ const TaskList: FC<Props> = memo(({ tasks, onRemove, onPress }) => (
       />
     ))}
   </ScrollView>
-));
+);
 
-export default TaskList;
+export default memo(TaskList);

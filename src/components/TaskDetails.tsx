@@ -1,15 +1,16 @@
 import React, { FC, memo } from "react";
 import { Text, View } from "react-native";
-import { Task } from "../utils/types";
+
+import { TaskModel } from "../utils/types";
 
 interface Props {
-  task?: Task;
+  task?: TaskModel;
 }
 
-const TaskDetails: FC<Props> = memo(({ task }) => (
+const TaskDetails: FC<Props> = ({ task }) => (
   <View>
     <Text>{task?.content}</Text>
   </View>
-));
+);
 
-export default TaskDetails;
+export default memo(TaskDetails);

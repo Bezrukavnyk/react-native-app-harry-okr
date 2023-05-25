@@ -1,8 +1,9 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-import { Task, TaskState } from "../utils/types";
+import { TaskModel, TaskStateModel } from "../utils/types";
+import { RootState } from "./store";
 
-const initialState: TaskState = {
+const initialState: TaskStateModel = {
   tasks: [],
 };
 
@@ -10,7 +11,7 @@ export const taskSlice = createSlice({
   name: "tasks",
   initialState,
   reducers: {
-    addTask: (state, action: PayloadAction<Task>) => {
+    addTask: (state, action: PayloadAction<TaskModel>) => {
       state.tasks.push(action.payload);
     },
     removeTask: (state, action: PayloadAction<string>) => {
@@ -18,6 +19,8 @@ export const taskSlice = createSlice({
     },
   },
 });
+
+export const selectorTasks = (state: RootState) => state.tasks.tasks;
 
 export const { addTask, removeTask } = taskSlice.actions;
 

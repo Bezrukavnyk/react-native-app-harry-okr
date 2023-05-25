@@ -1,13 +1,13 @@
-export interface Task {
+export interface TaskModel {
   id: string;
   content: string;
 }
 
-export interface TaskState {
-  tasks: Task[];
+export interface TaskStateModel {
+  tasks: TaskModel[];
 }
 
-export type RootStackParamList = {
+export type RootStackParamListModel = {
   ToDoList: undefined;
   TaskDetail: { taskId: string };
 };

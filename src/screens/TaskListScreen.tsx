@@ -1,20 +1,19 @@
 import React, { FC, memo } from "react";
-import { useSelector, useDispatch } from "react-redux";
 import { useNavigation } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
 
-import { RootStackParamList, Task } from "../utils/types";
+import { useAppDispatch, useAppSelector } from "../store/store";
+import { RootStackParamListModel, TaskModel } from "../utils/types";
 import AddTaskForm from "../components/AddTaskForm";
 import TaskList from "../components/TaskList";
-import { RootState } from "../store/store";
-import { addTask, removeTask } from "../store/taskSlice";
+import { addTask, removeTask, selectorTasks } from "../store/taskSlice";
 
-const TaskListScreen: FC = memo(() => {
-  const tasks = useSelector((state: RootState) => state.tasks.tasks);
-  const dispatch = useDispatch();
+const TaskListScreen: FC = () => {
+  const tasks = useAppSelector(selectorTasks);
+  const dispatch = useAppDispatch();
 
   const handleAdd = (content: string) => {
-    const newTask: Task = { id: Date.now().toString(), content };
+    const newTask: TaskModel = { id: Date.now().toString(), content };
     dispatch(addTask(newTask));
   };
 
@@ -23,9 +22,9 @@ const TaskListScreen: FC = memo(() => {
   };
 
   const navigation =
-    useNavigation<StackNavigationProp<RootStackParamList, "ToDoList">>();
+    useNavigation<StackNavigationProp<RootStackParamListModel, "ToDoList">>();
 
-  const handlePress = (task: Task) => {
+  const handlePress = (task: TaskModel) => {
     navigation.navigate("TaskDetail", { taskId: task.id });
   };
 
@@ -35,6 +34,6 @@ const TaskListScreen: FC = memo(() => {
       <TaskList tasks={tasks} onRemove={handleRemove} onPress={handlePress} />
     </>
   );
-});
+};
 
-export default TaskListScreen;
+export default memo(TaskListScreen);

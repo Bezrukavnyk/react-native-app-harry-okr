@@ -5,7 +5,7 @@ interface Props {
   onAdd: (content: string) => void;
 }
 
-const AddTaskForm: FC<Props> = memo(({ onAdd }) => {
+const AddTaskForm: FC<Props> = ({ onAdd }) => {
   const [content, setContent] = useState("");
 
   const handleSubmit = () => {
@@ -23,6 +23,6 @@ const AddTaskForm: FC<Props> = memo(({ onAdd }) => {
       <Button title="Add task" onPress={handleSubmit} />
     </>
   );
-});
+};
 
-export default AddTaskForm;
+export default memo(AddTaskForm);

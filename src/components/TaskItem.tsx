@@ -1,14 +1,15 @@
 import React, { FC, memo } from "react";
 import { Button, ListItem } from "react-native-elements";
-import { Task } from "../utils/types";
+
+import { TaskModel } from "../utils/types";
 
 interface Props {
-  task: Task;
+  task: TaskModel;
   onRemove: (id: string) => void;
-  onPress: (task: Task) => void;
+  onPress: (task: TaskModel) => void;
 }
 
-const TaskItem: FC<Props> = memo(({ task, onRemove, onPress }) => {
+const TaskItem: FC<Props> = ({ task, onRemove, onPress }) => {
   return (
     <ListItem onPress={() => onPress(task)}>
       <ListItem.Content>
@@ -17,6 +18,6 @@ const TaskItem: FC<Props> = memo(({ task, onRemove, onPress }) => {
       <Button title="Delete" onPress={() => onRemove(task.id)} />
     </ListItem>
   );
-});
+};
 
-export default TaskItem;
+export default memo(TaskItem);
