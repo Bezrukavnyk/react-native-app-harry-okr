@@ -1,10 +1,4 @@
-export interface TaskModel {
-  id: string;
-  content: string;
-}
-
-export interface TaskStateModel {
-  tasks: TaskModel[];
+export interface InitialStateModel {
   posts: PostModel[] | null;
   post: PostModel | null;
   isLoading: boolean;
@@ -12,7 +6,7 @@ export interface TaskStateModel {
 
 export type RootStackParamListModel = {
   ToDoList: undefined;
-  TaskDetail: { postId: number };
+  PostDetail: { postId: number };
 };
 
 export type PostModel = {

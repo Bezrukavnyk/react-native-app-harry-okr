@@ -4,31 +4,30 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 
 import { store } from "./src/store/store";
-import TaskListScreen from "./src/screens/TaskListScreen";
-import TaskDetailScreen from "./src/screens/TaskDetailScreen";
-
+import PostListScreen from "./src/screens/PostListScreen";
+import PostDetailScreen from "./src/screens/PostDetailScreen";
 
 const Stack = createStackNavigator();
 
-const App: FC = memo(() => {
+const App: FC = () => {
   return (
     <Provider store={store}>
       <NavigationContainer>
-        <Stack.Navigator initialRouteName="TaskList">
+        <Stack.Navigator initialRouteName="PostList">
           <Stack.Screen
-            name="TaskList"
-            component={TaskListScreen}
-            options={{ title: "Tasks" }}
+            name="PostList"
+            component={PostListScreen}
+            options={{ title: "Posts" }}
           />
           <Stack.Screen
-            name="TaskDetail"
-            component={TaskDetailScreen}
-            options={{ title: "Task Detail" }}
+            name="PostDetail"
+            component={PostDetailScreen}
+            options={{ title: "Post Detail" }}
           />
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>
   );
-});
+};
 
-export default App;
+export default memo(App);

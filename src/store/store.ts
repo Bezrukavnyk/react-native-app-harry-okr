@@ -1,11 +1,11 @@
-import { configureStore } from "@reduxjs/toolkit";
-import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
+import { configureStore } from '@reduxjs/toolkit';
+import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 
-import taskReducer from "./taskSlice";
+import postReducer from './postSlice';
 
 export const store = configureStore({
   reducer: {
-    tasks: taskReducer,
+    posts: postReducer,
   },
 });
 

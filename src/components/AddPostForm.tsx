@@ -1,19 +1,19 @@
-import React, { FC, memo, useState } from "react";
-import { Button, Input } from "react-native-elements";
-import { View, StyleSheet } from "react-native";
-import { useAppDispatch } from "../store/store";
-import { createPost } from "../store/taskAsync";
+import React, { FC, memo, useState } from 'react';
+import { Button, Input } from 'react-native-elements';
+import { View, StyleSheet } from 'react-native';
+import { useAppDispatch } from '../store/store';
+import { createPost } from '../store/postAsync';
 
-const AddTaskForm: FC = () => {
-  const [title, setTitle] = useState("");
-  const [body, setBody] = useState("");
+const AddPostForm: FC = () => {
+  const [title, setTitle] = useState('');
+  const [body, setBody] = useState('');
   const dispatch = useAppDispatch();
 
   const handleSubmit = () => {
     if (title && body) {
       dispatch(createPost({ title, body }));
-      setTitle("");
-      setBody("");
+      setTitle('');
+      setBody('');
     }
   };
 
@@ -52,4 +52,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default memo(AddTaskForm);
+export default memo(AddPostForm);
