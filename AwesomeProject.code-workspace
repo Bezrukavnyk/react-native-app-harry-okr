@@ -1,0 +1,17 @@
+{
+  "folders": [
+	{
+		"name": "AwesomeProject",
+		"path": "."
+	},
+	{
+		"name": "assets",
+		"path": "../../../../Downloads/react-native-app-harry-okr-master/assets"
+	},
+	{
+		"name": "src",
+		"path": "../../../../Downloads/react-native-app-harry-okr-master/src"
+	}
+],
+  "settings": {}
+}
